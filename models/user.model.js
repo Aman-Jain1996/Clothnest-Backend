@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 const cartSchema = new Schema(
   {
-    id: String,
     title: String,
     listPrice: Number,
     sellPrice: Number,
@@ -15,7 +14,6 @@ const cartSchema = new Schema(
 
 const wishListSchema = new Schema(
   {
-    id: String,
     title: String,
     listPrice: Number,
     sellPrice: Number,
@@ -26,7 +24,6 @@ const wishListSchema = new Schema(
 
 const ordersSchema = new Schema(
   {
-    id: String,
     items: [cartSchema],
     orderDate: Date,
     deliveryAddress: addressSchema,
@@ -38,7 +35,6 @@ const ordersSchema = new Schema(
 
 const addressSchema = new Schema(
   {
-    id: String,
     name: String,
     phone: String,
     email: String,
@@ -52,7 +48,6 @@ const addressSchema = new Schema(
 
 const userSchema = new Schema(
   {
-    id: String,
     firstName: String,
     lastName: String,
     email: String,
@@ -60,7 +55,7 @@ const userSchema = new Schema(
     cart: [cartSchema],
     address: [addressSchema],
     orders: [ordersSchema],
-    wishList: [wishListSchema],
+    wishlist: [wishListSchema],
   },
   {
     timestamps: true,
