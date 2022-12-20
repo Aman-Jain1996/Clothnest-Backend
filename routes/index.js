@@ -8,7 +8,7 @@ const categoryRouter = require("./category.router");
 
 router.use("/auth", authRouter);
 router.use("/product", productRouter);
-router.use("/user", userRouter);
+router.use("/user", verifyAuth, userRouter);
 router.use("/category", categoryRouter);
 
 module.exports = router;
