@@ -25,6 +25,14 @@ const {
 
 const { getAllOrdersHandler, postOrderHandler } = require("./order.controller");
 
+const {
+  getCartItemsHandler,
+  addItemToCartHandler,
+  removeItemFromCartHandler,
+  updateCartItemHandler,
+  clearCartHandler,
+} = require("./cart.controller");
+
 module.exports = {
   loginHandler,
   signUpHandler,
@@ -41,4 +49,9 @@ module.exports = {
   postCategoryHandler,
   getAllOrdersHandler,
   postOrderHandler,
+  getCartItemsHandler,
+  addItemToCartHandler,
+  removeItemFromCartHandler,
+  updateCartItemHandler,
+  clearCartHandler,
 };
