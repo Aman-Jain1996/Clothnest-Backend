@@ -23,6 +23,8 @@ const {
   postCategoryHandler,
 } = require("./category.controller");
 
+const { getAllOrdersHandler, postOrderHandler } = require("./order.controller");
+
 module.exports = {
   loginHandler,
   signUpHandler,
@@ -37,4 +39,6 @@ module.exports = {
   getAllCategoryHandler,
   getCategoryHandler,
   postCategoryHandler,
+  getAllOrdersHandler,
+  postOrderHandler,
 };
