@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const routes = require("./routes");
-const { logger } = require("./middlewares");
+const { logger, errorHandler, routeNotFound } = require("./middlewares");
 const mongoose = require("mongoose");
 
 const PORT = process.env.PORT || 5000;
@@ -23,6 +23,10 @@ app.get("/", (req, res) => {
   res.send("Welcome to Clothnest Backend");
 });
 
+app.use(routeNotFound);
+app.use(errorHandler);
+
+mongoose.set("strictQuery", false);
 mongoose
   .connect(DB_URL, {
     useNewUrlParser: true,

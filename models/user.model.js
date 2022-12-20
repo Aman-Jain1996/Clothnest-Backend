@@ -22,17 +22,6 @@ const wishListSchema = new Schema(
   { timestamps: true }
 );
 
-const ordersSchema = new Schema(
-  {
-    items: [cartSchema],
-    orderDate: Date,
-    deliveryAddress: addressSchema,
-    amountPaid: Number,
-    paymentId: String,
-  },
-  { timestamps: true }
-);
-
 const addressSchema = new Schema(
   {
     name: String,
@@ -42,6 +31,17 @@ const addressSchema = new Schema(
     street: String,
     city: String,
     state: String,
+  },
+  { timestamps: true }
+);
+
+const ordersSchema = new Schema(
+  {
+    items: [cartSchema],
+    orderDate: Date,
+    deliveryAddress: addressSchema,
+    amountPaid: Number,
+    paymentId: String,
   },
   { timestamps: true }
 );
