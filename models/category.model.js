@@ -5,6 +5,7 @@ const categorySchema = new Schema(
   {
     id: String,
     title: String,
+    imageURL: String,
   },
   { timestamps: true }
 );

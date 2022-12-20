@@ -17,6 +17,12 @@ const {
   updateAddressHandler,
 } = require("./address.controller");
 
+const {
+  getAllCategoryHandler,
+  getCategoryHandler,
+  postCategoryHandler,
+} = require("./category.controller");
+
 module.exports = {
   loginHandler,
   signUpHandler,
@@ -28,4 +34,7 @@ module.exports = {
   postAddressHandler,
   deleteAddressHandler,
   updateAddressHandler,
+  getAllCategoryHandler,
+  getCategoryHandler,
+  postCategoryHandler,
 };
