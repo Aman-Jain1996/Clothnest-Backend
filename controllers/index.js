@@ -33,6 +33,12 @@ const {
   clearCartHandler,
 } = require("./cart.controller");
 
+const {
+  getWishlistItemsHandler,
+  addItemToWishlistHandler,
+  removeItemFromWishlistHandler,
+} = require("./wishlist.controller");
+
 module.exports = {
   loginHandler,
   signUpHandler,
@@ -54,4 +60,7 @@ module.exports = {
   removeItemFromCartHandler,
   updateCartItemHandler,
   clearCartHandler,
+  getWishlistItemsHandler,
+  addItemToWishlistHandler,
+  removeItemFromWishlistHandler,
 };

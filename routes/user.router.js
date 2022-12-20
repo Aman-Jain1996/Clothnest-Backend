@@ -11,6 +11,9 @@ const {
   clearCartHandler,
   updateCartItemHandler,
   removeItemFromCartHandler,
+  getWishlistItemsHandler,
+  addItemToWishlistHandler,
+  removeItemFromWishlistHandler,
 } = require("../controllers");
 const router = express.Router();
 
@@ -28,5 +31,12 @@ router
   .post(updateCartItemHandler)
   .delete(removeItemFromCartHandler);
 router.route("/cart/clear").delete(clearCartHandler);
+
+router
+  .route("/wishlist")
+  .get(getWishlistItemsHandler)
+  .post(addItemToWishlistHandler);
+
+router.route("/wishlist/:id").delete(removeItemFromWishlistHandler);
 
 module.exports = router;
