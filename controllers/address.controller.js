@@ -7,7 +7,9 @@ const getAddressHandler = async (req, res) => {
     const { address } = user;
     return res.status(200).json({ address });
   } catch (err) {
-    return res.status(500).json({ message: "Couldn't get address" });
+    return res
+      .status(500)
+      .json({ error: err.message, message: "Couldn't get address" });
   }
 };
 
@@ -25,7 +27,9 @@ const postAddressHandler = async (req, res) => {
     );
     return res.status(201).json({ address: updatedUser.address });
   } catch (err) {
-    return res.status(500).json({ message: "Couldn't add address" });
+    return res
+      .status(500)
+      .json({ error: err.message, message: "Couldn't add address" });
   }
 };
 
@@ -57,7 +61,9 @@ const deleteAddressHandler = async (req, res) => {
     );
     res.status(200).json({ address: updatedUser.address });
   } catch (err) {
-    return res.status(500).json({ message: "Couldn't delete address" });
+    return res
+      .status(500)
+      .json({ error: err.message, message: "Couldn't delete address" });
   }
 };
 
@@ -87,7 +93,9 @@ const updateAddressHandler = async (req, res) => {
     );
     res.status(200).json({ address: updatedUser.address });
   } catch (err) {
-    return res.status(500).json({ message: "Couldn't update address" });
+    return res
+      .status(500)
+      .json({ error: err.message, message: "Couldn't update address" });
   }
 };
 

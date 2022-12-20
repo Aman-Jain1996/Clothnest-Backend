@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const categorySchema = new Schema(
   {
-    id: String,
     title: String,
     imageURL: String,
+    altText: String,
   },
   { timestamps: true }
 );

@@ -7,7 +7,9 @@ const getWishlistItemsHandler = async (req, res) => {
     const { wishlist } = foundUser;
     return res.json({ wishlist });
   } catch (err) {
-    return res.status(500).json({ message: "Couldn't get wishlist items" });
+    return res
+      .status(500)
+      .json({ error: err.message, message: "Couldn't get wishlist items" });
   }
 };
 
@@ -26,7 +28,9 @@ const addItemToWishlistHandler = async (req, res) => {
     );
     return res.status(201).json({ wishlist: updatedUser.wishlist });
   } catch (err) {
-    return res.status(500).json({ message: "Couldn't add item to wishlist" });
+    return res
+      .status(500)
+      .json({ error: err.message, message: "Couldn't add item to wishlist" });
   }
 };
 
@@ -53,7 +57,10 @@ const removeItemFromWishlistHandler = async (req, res) => {
   } catch (err) {
     return res
       .status(500)
-      .json({ message: "Couldn't remove item from wishlist" });
+      .json({
+        error: err.message,
+        message: "Couldn't remove item from wishlist",
+      });
   }
 };
 

@@ -52,6 +52,7 @@ const userSchema = new Schema(
     lastName: String,
     email: String,
     password: String,
+    isAdmin: { type: Boolean, default: false },
     cart: [cartSchema],
     address: [addressSchema],
     orders: [ordersSchema],

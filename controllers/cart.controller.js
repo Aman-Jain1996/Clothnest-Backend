@@ -7,7 +7,9 @@ const getCartItemsHandler = async (req, res) => {
     const { cart } = foundUser;
     return res.status(200).json({ cart });
   } catch (err) {
-    return res.status(500).json({ message: "Couldn't get cart items" });
+    return res
+      .status(500)
+      .json({ error: err.message, message: "Couldn't get cart items" });
   }
 };
 
@@ -25,7 +27,9 @@ const addItemToCartHandler = async (req, res) => {
     );
     return res.status(201).json({ cart: updatedUser.cart });
   } catch (err) {
-    return res.status(500).json({ message: "Couldn't add item to cart" });
+    return res
+      .status(500)
+      .json({ error: err.message, message: "Couldn't add item to cart" });
   }
 };
 
@@ -54,7 +58,9 @@ const removeItemFromCartHandler = async (req, res) => {
 
     return res.status(200).json({ cart: updatedUser.cart });
   } catch (err) {
-    return res.status(500).json({ message: "Couldn't remove item from cart" });
+    return res
+      .status(500)
+      .json({ error: err.message, message: "Couldn't remove item from cart" });
   }
 };
 
@@ -97,7 +103,9 @@ const updateCartItemHandler = async (req, res) => {
     );
     res.status(200).json({ cart: updatedUser.cart });
   } catch (err) {
-    return res.status(500).json({ message: "Couldn't update item in cart" });
+    return res
+      .status(500)
+      .json({ error: err.message, message: "Couldn't update item in cart" });
   }
 };
 
@@ -111,7 +119,9 @@ const clearCartHandler = async (req, res) => {
     );
     return res.status(200).json({ cart: updatedUser.cart });
   } catch (err) {
-    return res.status(500).json({ message: "Couldn't clear cart" });
+    return res
+      .status(500)
+      .json({ error: err.message, message: "Couldn't clear cart" });
   }
 };
 

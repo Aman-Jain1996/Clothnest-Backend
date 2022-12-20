@@ -27,7 +27,7 @@ const loginHandler = async (req, res) => {
       { expiresIn: "24h" }
     );
 
-    const userDataToSend = { ...foundUser };
+    const userDataToSend = { ...foundUser._doc };
     delete userDataToSend.password;
 
     return res.status(200).json({
@@ -35,21 +35,21 @@ const loginHandler = async (req, res) => {
       user: { ...userDataToSend, token: jwtToken },
     });
   } catch (err) {
-    return res.status(500).json({ message: "Login failed" });
+    return res
+      .status(500)
+      .json({ error: err.message, message: "Login failed" });
   }
 };
 
 const signUpHandler = async (req, res) => {
   try {
     const data = req.body;
-    let userFound;
-    userFound = await User.findOne({ email: data.email });
+    let userFound = await User.findOne({ email: data.email });
     if (userFound) {
       return res
         .status(409)
         .json({ message: "User already exists with this email" });
     }
-
     let encyyptedPassword = await bcrypt.hash(data.password, 15);
 
     const newUser = new User({
@@ -69,7 +69,7 @@ const signUpHandler = async (req, res) => {
       { expiresIn: "24h" }
     );
 
-    const userDataToSend = { ...newUser };
+    const userDataToSend = { ...newUser._doc };
     delete userDataToSend.password;
 
     return res.status(201).json({
@@ -77,7 +77,9 @@ const signUpHandler = async (req, res) => {
       user: { ...userDataToSend, token: jwtToken },
     });
   } catch (err) {
-    return res.status(500).json({ message: "Signup failed" });
+    return res
+      .status(500)
+      .json({ error: err.message, message: "Signup failed" });
   }
 };
 
@@ -108,7 +110,9 @@ const resetHandler = async (req, res) => {
       message: "Password changed successfully",
     });
   } catch (err) {
-    return res.status(500).json({ message: "Password reset failed" });
+    return res
+      .status(500)
+      .json({ error: err.message, message: "Password reset failed" });
   }
 };
 

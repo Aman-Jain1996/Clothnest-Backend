@@ -7,7 +7,9 @@ const getAllOrdersHandler = async (req, res) => {
     const { orders } = user;
     return res.json({ orders });
   } catch (err) {
-    return res.status(500).json({ message: "Couldn't get orders" });
+    return res
+      .status(500)
+      .json({ error: err.message, message: "Couldn't get orders" });
   }
 };
 
@@ -24,7 +26,9 @@ const postOrderHandler = async (req, res) => {
     );
     return res.status(201).json({ orders: updatedUser.orders });
   } catch (err) {
-    return res.status(500).json({ message: "Couldn't post order" });
+    return res
+      .status(500)
+      .json({ error: err.message, message: "Couldn't post order" });
   }
 };
 

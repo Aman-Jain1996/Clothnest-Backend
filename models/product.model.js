@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 const productSchema = new Schema(
   {
-    id: String,
     title: String,
     description: String,
     listPrice: Number,
@@ -11,10 +10,10 @@ const productSchema = new Schema(
     rating: String,
     imageUrl: String,
     categoryName: String,
-    newArrival: Boolean,
-    isTrending: Boolean,
-    isOutOfStock: Boolean,
-    totalRatingsCount: Number,
+    newArrival: { type: Boolean, default: false },
+    isTrending: { type: Boolean, default: false },
+    isOutOfStock: { type: Boolean, default: false },
+    totalRatingsCount: { type: Number, default: 50 },
   },
   { timestamps: true }
 );
