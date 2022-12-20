@@ -33,9 +33,10 @@ mongoose
     useUnifiedTopology: true,
     dbName,
   })
-  .then(() => console.log("Connected to database successfully!"))
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server Started , Listening on port ${process.env.PORT}`);
+      console.log("Connected to database successfully!");
+    });
+  })
   .catch((err) => console.log("Error in connecting to DB", err));
-
-app.listen(PORT, () => {
-  console.log(`Server Started , Listening on port ${process.env.PORT}`);
-});
