@@ -40,12 +40,12 @@ const removeItemFromWishlistHandler = async (req, res) => {
     const productId = req.params.id;
     const foundUser = await User.findById(id);
 
-    if (!foundUser.wishlist.find((item) => item._id === productId)) {
+    if (!foundUser.wishlist.find((item) => item.id === productId)) {
       return res.status(404).json({ message: "Product not found" });
     }
 
     const updatedWishlist = foundUser.wishlist.filter(
-      (item) => item._id !== productId
+      (item) => item.id !== productId
     );
 
     const updatedUser = await User.findByIdAndUpdate(

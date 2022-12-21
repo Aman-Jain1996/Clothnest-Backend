@@ -39,7 +39,7 @@ const removeItemFromCartHandler = async (req, res) => {
     const productId = req.params.id;
     const foundUser = await User.findById(id);
     const foundCartItem = foundUser.cart.find(
-      (cartItem) => cartItem._id === productId
+      (cartItem) => cartItem.id === productId
     );
 
     if (!foundCartItem) {
@@ -47,7 +47,7 @@ const removeItemFromCartHandler = async (req, res) => {
     }
 
     const filteredCart = foundUser.cart.filter(
-      (cartItem) => cartItem._id !== productId
+      (cartItem) => cartItem.id !== productId
     );
 
     const updatedUser = await User.findByIdAndUpdate(
@@ -73,7 +73,7 @@ const updateCartItemHandler = async (req, res) => {
     const foundUser = await User.findById(id);
     const userCart = foundUser.cart;
     const foundCartItem = userCart.find(
-      (cartItem) => cartItem._id === productId
+      (cartItem) => cartItem.id === productId
     );
 
     if (!foundCartItem) {
@@ -82,13 +82,13 @@ const updateCartItemHandler = async (req, res) => {
 
     if (action.type === "increment") {
       userCart.forEach((cartItem) => {
-        if (cartItem._id === productId) {
+        if (cartItem.id === productId) {
           cartItem.quantity += 1;
         }
       });
     } else if (action.type === "decrement") {
       userCart.forEach((cartItem) => {
-        if (cartItem._id === productId) {
+        if (cartItem.id === productId) {
           cartItem.quantity -= 1;
         }
       });

@@ -7,7 +7,7 @@ const cartSchema = new Schema(
     listPrice: Number,
     sellPrice: Number,
     imageUrl: String,
-    quantity: Number,
+    quantity: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

@@ -26,11 +26,11 @@ router
 router.route("/orders").get(getAllOrdersHandler).post(postOrderHandler);
 
 router.route("/cart").get(getCartItemsHandler).post(addItemToCartHandler);
+router.route("/cart/clear").all(clearCartHandler);
 router
   .route("/cart/:id")
   .post(updateCartItemHandler)
   .delete(removeItemFromCartHandler);
-router.route("/cart/clear").delete(clearCartHandler);
 
 router
   .route("/wishlist")

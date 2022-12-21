@@ -17,11 +17,11 @@ const postOrderHandler = async (req, res) => {
   try {
     const id = req.userId;
     const { order } = req.body;
-    const user = await User.findById();
+    const user = await User.findById(id);
 
     const updatedUser = await User.findByIdAndUpdate(
       id,
-      { $set: { orders: [...user.address, order] } },
+      { $set: { orders: [...user.orders, order] } },
       { new: true }
     );
     return res.status(201).json({ orders: updatedUser.orders });

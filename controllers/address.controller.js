@@ -1,4 +1,4 @@
-const { User } = require("../models/user.model");
+const { User } = require("../models");
 
 const getAddressHandler = async (req, res) => {
   try {
@@ -39,15 +39,15 @@ const deleteAddressHandler = async (req, res) => {
     const { id } = req.params;
     const foundUser = await User.findById(userId);
     const foundAddress = foundUser.address.find(
-      (address) => address._id === id
+      (address) => address.id === id
     );
 
     if (!foundAddress) {
       return res.status(404).json({ message: "Address not found" });
     }
 
-    const updatedUserAddresses = foundAddress.address.filter(
-      (address) => address._id !== id
+    const updatedUserAddresses = foundUser.address.filter(
+      (address) => address.id !== id
     );
 
     const updatedUser = await User.findByIdAndUpdate(
@@ -75,16 +75,16 @@ const updateAddressHandler = async (req, res) => {
 
     const foundUser = await User.findById(userId);
     const foundAddress = foundUser.address.find(
-      (address) => address._id === id
+      (address) => address.id === id
     );
 
     if (!foundAddress) {
       return res.status(404).json({ message: "Address not found" });
     }
 
-    const updatedUserAddresses = foundUser.address.map((userAddress) => {
-      userAddress._id === id ? address : userAddress;
-    });
+    const updatedUserAddresses = foundUser.address.map((userAddress) =>
+      userAddress.id === id ? address : userAddress
+    );
 
     const updatedUser = await User.findByIdAndUpdate(
       userId,
