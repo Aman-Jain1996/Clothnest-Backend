@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Use of Custom Middleware
 app.use(logger);
-app.use("/clothnest", routes);
+app.use("/", routes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to Clothnest Backend");
