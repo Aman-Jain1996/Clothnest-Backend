@@ -94,6 +94,12 @@ const resetHandler = async (req, res) => {
         .json({ message: "No user registered with this email" });
     }
 
+    if (foundUser.isAdmin) {
+      return res
+        .status(400)
+        .json({ message: "Guest user password can't be changed" });
+    }
+
     let encryptedPassword = await bcrypt.hash(data.password, 15);
 
     await User.findByIdAndUpdate(
