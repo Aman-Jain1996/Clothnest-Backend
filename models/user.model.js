@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const cartSchema = new Schema(
   {
+    id:String,
     title: String,
     listPrice: Number,
     sellPrice: Number,
@@ -14,6 +15,7 @@ const cartSchema = new Schema(
 
 const wishListSchema = new Schema(
   {
+    id:String,
     title: String,
     listPrice: Number,
     sellPrice: Number,
