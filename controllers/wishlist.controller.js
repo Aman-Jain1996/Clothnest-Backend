@@ -40,12 +40,12 @@ const removeItemFromWishlistHandler = async (req, res) => {
     const productId = req.params.id;
     const foundUser = await User.findById(id);
 
-    if (!foundUser.wishlist.find((item) => item.id === productId)) {
+    if (!foundUser.wishlist.find((item) => item._id.toString() === productId)) {
       return res.status(404).json({ message: "Product not found" });
     }
 
     const updatedWishlist = foundUser.wishlist.filter(
-      (item) => item.id !== productId
+      (item) => item._id.toString() !== productId
     );
 
     const updatedUser = await User.findByIdAndUpdate(
@@ -55,12 +55,10 @@ const removeItemFromWishlistHandler = async (req, res) => {
     );
     return res.status(200).json({ wishlist: updatedUser.wishlist });
   } catch (err) {
-    return res
-      .status(500)
-      .json({
-        error: err.message,
-        message: "Couldn't remove item from wishlist",
-      });
+    return res.status(500).json({
+      error: err.message,
+      message: "Couldn't remove item from wishlist",
+    });
   }
 };
 

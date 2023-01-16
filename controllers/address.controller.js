@@ -18,6 +18,14 @@ const postAddressHandler = async (req, res) => {
     const userId = req.userId;
     const foundUser = await User.findById(userId);
     const { address } = req.body;
+
+    if (address.isDefault) {
+      foundUser.address.map((address) => {
+        if (address.isDefault) address.isDefault = false;
+        return address;
+      });
+    }
+
     const updatedUser = await User.findByIdAndUpdate(
       userId,
       {
@@ -38,16 +46,14 @@ const deleteAddressHandler = async (req, res) => {
     const userId = req.userId;
     const { id } = req.params;
     const foundUser = await User.findById(userId);
-    const foundAddress = foundUser.address.find(
-      (address) => address.id === id
-    );
+    const foundAddress = foundUser.address.find((address) => address._id.toString() === id);
 
     if (!foundAddress) {
       return res.status(404).json({ message: "Address not found" });
     }
 
     const updatedUserAddresses = foundUser.address.filter(
-      (address) => address.id !== id
+      (address) => address._id.toString() !== id
     );
 
     const updatedUser = await User.findByIdAndUpdate(
@@ -75,16 +81,23 @@ const updateAddressHandler = async (req, res) => {
 
     const foundUser = await User.findById(userId);
     const foundAddress = foundUser.address.find(
-      (address) => address.id === id
+      (address) => address._id.toString() === id
     );
 
     if (!foundAddress) {
       return res.status(404).json({ message: "Address not found" });
     }
 
-    const updatedUserAddresses = foundUser.address.map((userAddress) =>
-      userAddress.id === id ? address : userAddress
-    );
+    const updatedUserAddresses = foundUser.address.map((userAddress) => {
+      if (userAddress._id.toString() === id) {
+        return address;
+      } else {
+        if (address.isDefault) {
+          userAddress.isDefault = false;
+        }
+        return userAddress;
+      }
+    });
 
     const updatedUser = await User.findByIdAndUpdate(
       userId,

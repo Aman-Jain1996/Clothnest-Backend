@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const cartSchema = new Schema(
   {
-    id:String,
+    id: String,
     title: String,
     listPrice: Number,
     sellPrice: Number,
@@ -15,7 +15,7 @@ const cartSchema = new Schema(
 
 const wishListSchema = new Schema(
   {
-    id:String,
+    id: String,
     title: String,
     listPrice: Number,
     sellPrice: Number,
@@ -26,6 +26,7 @@ const wishListSchema = new Schema(
 
 const addressSchema = new Schema(
   {
+    id: String,
     name: String,
     phone: String,
     email: String,
@@ -33,6 +34,7 @@ const addressSchema = new Schema(
     street: String,
     city: String,
     state: String,
+    isDefault: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
