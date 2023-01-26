@@ -24,7 +24,7 @@ const loginHandler = async (req, res) => {
     const jwtToken = jwt.sign(
       { userId: foundUser._id },
       process.env.APP_SECRET_KEY,
-      { expiresIn: "24h" }
+      { expiresIn: data.rememberMe ? "24h" : "4h" }
     );
 
     const userDataToSend = { ...foundUser._doc };
