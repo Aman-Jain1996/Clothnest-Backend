@@ -40,3 +40,5 @@ mongoose
     });
   })
   .catch((err) => console.log("Error in connecting to DB", err));
+
+module.exports = app;
